@@ -10,6 +10,6 @@ for line in file:
 
     print(decoded_line)
     
-    print("end")
+    print("end of data list")
       
     
