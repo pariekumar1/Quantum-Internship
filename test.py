@@ -9,5 +9,7 @@ for line in file:
     decoded_line = line.decode("utf-8").strip()
 
     print(decoded_line)
+    
+    print("end")
       
     
