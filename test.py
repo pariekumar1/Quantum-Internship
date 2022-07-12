@@ -3,9 +3,10 @@ import matplotlib.pyplot as pp
 import numpy as np
 #from datetime import datetime
 from dateutil import parser 
+import statistics
 
 # The URL to get the Quantum Lab Data
-url = "https://datadropper.z13.web.core.windows.net/flow.csv"
+url = "https://datadropper.z13.web.core.windows.net/temperature.csv"
  
 # read the data from the URL into file and write it to a local file labdata.txt
  
@@ -44,8 +45,25 @@ print(Y)
 # Graph the data
  
 pp.plot(X, Y, label = 'Date/Value Plot')
+
+m = statistics.mean(Y)
+sd = statistics.stdev(Y)
+
+pp.axhline(m, color = 'k', linestyle = 'dashed')
+pp.axhline(m + sd, color = 'y', linestyle = 'dashed')
+pp.axhline(m - sd, color = 'y', linestyle = 'dashed')
+pp.axhline(m - sd - sd, color = 'y', linestyle = 'dashed')
+pp.axhline(m + sd + sd, color = 'y', linestyle = 'dashed')
+
 pp.xlabel('Date')
 pp.ylabel('Value')
 pp.title('Lab Data')
 pp.legend()
+
+
+
+
+
 pp.show()
+
+
