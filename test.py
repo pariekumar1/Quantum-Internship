@@ -131,7 +131,7 @@ for i in range(len(Y)):
     Rule4.append(abs(Y[i] - m))
  
 for i in range(len(Rule4)):
-    if (i > 4 and Rule4[i-8] > 0 and Rule4[i-7] > 0 and Rule4[i-6] > 0 and Rule4[i-5] > 0 and Rule4[i-4] > 0 and Rule4[i-3] > 0 and Rule4[i-2] > 0 and Rule4[i-1] > 0 and Rule4[i] > 0):
+    if (i > 8 and Rule4[i-8] > 0 and Rule4[i-7] > 0 and Rule4[i-6] > 0 and Rule4[i-5] > 0 and Rule4[i-4] > 0 and Rule4[i-3] > 0 and Rule4[i-2] > 0 and Rule4[i-1] > 0 and Rule4[i] > 0):
         foundNine = True
         break
  

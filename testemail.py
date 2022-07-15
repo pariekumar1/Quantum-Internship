@@ -21,6 +21,6 @@ Subject: %s
  
 # Send the mail
  
-server = smtplib.SMTP('localhost:1026')
+server = smtplib.SMTP('localhost:1025')
 server.sendmail(FROM, TO, message)
 server.quit()
