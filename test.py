@@ -49,8 +49,8 @@ print(Y)
 m = statistics.mean(Y)
 sd = statistics.stdev(Y)
  
-print (m)
-print (sd)
+print ("Mean = ", m)
+print ("SD = ", sd)
  
 # Graph the data
  
@@ -74,9 +74,15 @@ pp.show()
  
 Rule1 = []
  
+# Capture the absolute distance from "mean" and subtract 3*sd
+ 
 for i in range(len(Y)):
     Rule1.append(abs(Y[i] - m) - 3*sd)
  
+print("Rule1 = ", Rule1)
+ 
+# Check if any point in Rule1 is postive after subtracting 3*sd
+# If its positive then its outside of Zone A
  
 result = any(Rule1)
  
@@ -85,17 +91,45 @@ if (result):
 else:
     print("Western Electric Rule1 is NOT satisfied on this chart!")
  
-
-# Let's check for Rule2
+# Capture the distance from the mean and whether the point is above or below the "mean" line
  
-Rule2 = []
-foundTwo = False
+Rule = []
+RuleSign = []
+ 
+# Calculate the distance of the point from "mean"
+# Note that the point can be either above or below the "mean" line
  
 for i in range(len(Y)):
-    Rule2.append(abs(Y[i] - m) - 2*sd)
+    Rule.append(Y[i] - m)
  
-for i in range(len(Rule2)):
-    if (i > 0 and Rule2[i-1] > 0 and Rule2[i] > 0):
+print("Rule = ", Rule)
+ 
+# Note whether the point is above or below the "mean" line in RuleSign
+# +1 means above the "mean" line and -1 means below the "mean" line
+ 
+RuleSign = np.sign(Rule)
+ 
+print("RuleSign = ", RuleSign)
+ 
+# Let's check for Rule2
+ 
+Rule2Check = []
+foundTwo = False
+ 
+# Get the absolute distance from "mean" and subtract 2 * sd to capture if the point is in Zone A or outside relative to the "mean" line
+ 
+for i in range(len(Rule)):
+    Rule2Check.append(abs(Rule[i]) - 2*sd)
+ 
+print("Rule2Check = ", Rule2Check)
+ 
+# Walk through Rule2Check to see if we have two consecutive positive points on the same side of "mean"
+# The RuleSign captures which side of the "mean" line the point lies
+ 
+for i in range(len(Rule2Check)):
+    if (i > 0 and Rule2Check[i-1] > 0 and Rule2Check[i] > 0
+        and RuleSign[i-1] == RuleSign[i]):
+        print("Rule2: i = ", i)
         foundTwo = True
         break
  
@@ -106,14 +140,23 @@ else:
  
 # Let's check for Rule3
  
-Rule3 = []
+Rule3Check = []
 foundFive = False
  
-for i in range(len(Y)):
-    Rule3.append(abs(Y[i] - m) - sd)
+# Get the absolute distance from "mean" and subtract sd to capture if the point is in Zone B or outside relative to the "mean" line
  
-for i in range(len(Rule3)):
-    if (i > 4 and Rule3[i-4] > 0 and Rule3[i-3] > 0 and Rule3[i-2] > 0 and Rule3[i-1] > 0 and Rule3[i] > 0):
+for i in range(len(Rule)):
+    Rule3Check.append(abs(Rule[i]) - sd)
+ 
+print("Rule3Check = ", Rule3Check)
+ 
+# Walk through Rule3Check to see if we have five consecutive positive points on the same side of "mean"
+# The RuleSign captures which side of the "mean" line the point lies
+ 
+for i in range(len(Rule3Check)):
+    if (i > 3 and Rule3Check[i-4] > 0 and Rule3Check[i-3] > 0 and Rule3Check[i-2] > 0 and Rule3Check[i-1] > 0 and Rule3Check[i] > 0
+        and RuleSign[i-4] == RuleSign[i-3] == RuleSign[i-2] == RuleSign[i-1] == RuleSign[i]):
+        print("Rule3: i = ", i)
         foundFive = True
         break
  
@@ -124,14 +167,23 @@ else:
  
 # Let's check for Rule4
  
-Rule4 = []
+Rule4Check = []
 foundNine = False
  
-for i in range(len(Y)):
-    Rule4.append(abs(Y[i] - m))
+# Get the absolute distance from "mean" and to capture if the point is in Zone C or outside relative to the "mean" line
  
-for i in range(len(Rule4)):
-    if (i > 8 and Rule4[i-8] > 0 and Rule4[i-7] > 0 and Rule4[i-6] > 0 and Rule4[i-5] > 0 and Rule4[i-4] > 0 and Rule4[i-3] > 0 and Rule4[i-2] > 0 and Rule4[i-1] > 0 and Rule4[i] > 0):
+for i in range(len(Rule)):
+    Rule4Check.append(abs(Rule[i]))
+ 
+print("Rule4Check = ", Rule4Check)
+ 
+# Walk through Rule4Check to see if we have nine consecutive positive points on the same side of "mean"
+# The RuleSign captures which side of the "mean" line the point lies
+ 
+for i in range(len(Rule4Check)):
+    if (i > 7 and Rule4Check[i-8] > 0 and Rule4Check[i-7] > 0 and Rule4Check[i-6] > 0 and Rule4Check[i-5] > 0 and Rule4Check[i-4] > 0 and Rule4Check[i-3] > 0 and Rule4Check[i-2] > 0 and Rule4Check[i-1] > 0 and Rule4Check[i] > 0 and
+        RuleSign[i-8] == RuleSign[i-7] == RuleSign[i-6] == RuleSign[i-5] == RuleSign[i-4] == RuleSign[i-3] == RuleSign[i-2] == RuleSign[i-1] == RuleSign[i]):
+        print("Rule4: i = ", i)
         foundNine = True
         break
  
@@ -139,6 +191,4 @@ if (foundNine):
     print("Western Electric Rule4 is satisfied on this chart!")
 else:
     print("Western Electric Rule4 is NOT satisfied on this chart!")
- 
- 
  
