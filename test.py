@@ -26,7 +26,7 @@ fh.close()
 # Load the data to split and graph
  
 data = np.loadtxt(fname = 'labdata.txt', dtype = 'str', delimiter = ',')
-print(data)
+# print(data)
  
 # Split the data into X and Y arrays
  
@@ -41,8 +41,8 @@ for i in range(len(data)):
         else:
             Y.append(float(data[i][j]))
  
-print(X)
-print(Y)
+# print(X)
+# print(Y)
  
 # Calculate the mean and standard deviation
  
@@ -79,7 +79,7 @@ Rule1 = []
 for i in range(len(Y)):
     Rule1.append(abs(Y[i] - m) - 3*sd)
  
-print("Rule1 = ", Rule1)
+# print("Rule1 = ", Rule1)
  
 # Check if any point in Rule1 is postive after subtracting 3*sd
 # If its positive then its outside of Zone A
@@ -102,14 +102,14 @@ RuleSign = []
 for i in range(len(Y)):
     Rule.append(Y[i] - m)
  
-print("Rule = ", Rule)
+# print("Rule = ", Rule)
  
 # Note whether the point is above or below the "mean" line in RuleSign
 # +1 means above the "mean" line and -1 means below the "mean" line
  
 RuleSign = np.sign(Rule)
  
-print("RuleSign = ", RuleSign)
+# print("RuleSign = ", RuleSign)
  
 # Let's check for Rule2
  
@@ -121,7 +121,7 @@ foundTwo = False
 for i in range(len(Rule)):
     Rule2Check.append(abs(Rule[i]) - 2*sd)
  
-print("Rule2Check = ", Rule2Check)
+# print("Rule2Check = ", Rule2Check)
  
 # Walk through Rule2Check to see if we have two consecutive positive points on the same side of "mean"
 # The RuleSign captures which side of the "mean" line the point lies
@@ -129,7 +129,7 @@ print("Rule2Check = ", Rule2Check)
 for i in range(len(Rule2Check)):
     if (i > 0 and Rule2Check[i-1] > 0 and Rule2Check[i] > 0
         and RuleSign[i-1] == RuleSign[i]):
-        print("Rule2: i = ", i)
+       # print("Rule2: i = ", i)
         foundTwo = True
         break
  
@@ -148,7 +148,7 @@ foundFive = False
 for i in range(len(Rule)):
     Rule3Check.append(abs(Rule[i]) - sd)
  
-print("Rule3Check = ", Rule3Check)
+# print("Rule3Check = ", Rule3Check)
  
 # Walk through Rule3Check to see if we have five consecutive positive points on the same side of "mean"
 # The RuleSign captures which side of the "mean" line the point lies
@@ -156,7 +156,7 @@ print("Rule3Check = ", Rule3Check)
 for i in range(len(Rule3Check)):
     if (i > 3 and Rule3Check[i-4] > 0 and Rule3Check[i-3] > 0 and Rule3Check[i-2] > 0 and Rule3Check[i-1] > 0 and Rule3Check[i] > 0
         and RuleSign[i-4] == RuleSign[i-3] == RuleSign[i-2] == RuleSign[i-1] == RuleSign[i]):
-        print("Rule3: i = ", i)
+        # print("Rule3: i = ", i)
         foundFive = True
         break
  
@@ -175,7 +175,7 @@ foundNine = False
 for i in range(len(Rule)):
     Rule4Check.append(abs(Rule[i]))
  
-print("Rule4Check = ", Rule4Check)
+# print("Rule4Check = ", Rule4Check)
  
 # Walk through Rule4Check to see if we have nine consecutive positive points on the same side of "mean"
 # The RuleSign captures which side of the "mean" line the point lies
@@ -183,7 +183,7 @@ print("Rule4Check = ", Rule4Check)
 for i in range(len(Rule4Check)):
     if (i > 7 and Rule4Check[i-8] > 0 and Rule4Check[i-7] > 0 and Rule4Check[i-6] > 0 and Rule4Check[i-5] > 0 and Rule4Check[i-4] > 0 and Rule4Check[i-3] > 0 and Rule4Check[i-2] > 0 and Rule4Check[i-1] > 0 and Rule4Check[i] > 0 and
         RuleSign[i-8] == RuleSign[i-7] == RuleSign[i-6] == RuleSign[i-5] == RuleSign[i-4] == RuleSign[i-3] == RuleSign[i-2] == RuleSign[i-1] == RuleSign[i]):
-        print("Rule4: i = ", i)
+       # print("Rule4: i = ", i)
         foundNine = True
         break
  
@@ -191,4 +191,3 @@ if (foundNine):
     print("Western Electric Rule4 is satisfied on this chart!")
 else:
     print("Western Electric Rule4 is NOT satisfied on this chart!")
- 
