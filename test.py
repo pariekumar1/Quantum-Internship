@@ -125,9 +125,14 @@ for i in range(len(filesdata)):
     # Check if any point in Rule1 is postive after subtracting 3*sd
     # If its positive then its outside of Zone A
  
-    result = any(Rule1)
+    foundOne = False
  
-    if (result):
+    for i in range(len(Rule1)):
+        if Rule1[i] > 0:
+            foundOne = True
+            break
+ 
+    if (foundOne):
         fh2.write('Western Electric Rule1 is satisfied on this chart!')
         fh2.write('\n')
         # print("Western Electric Rule1 is satisfied on this chart!")
