@@ -97,13 +97,13 @@ for i in range(len(filesdata)):
  
     pp.plot(X, Y, label = 'Date/Value Plot')
  
-    pp.axhline(m, color = 'k', linestyle = 'dashed')
-    pp.axhline(m + sd, color = 'y', linestyle = 'dashed')
-    pp.axhline(m + 2*sd, color = 'y', linestyle = 'dashed')
-    pp.axhline(m + 3*sd, color = 'y', linestyle = 'dashed')
-    pp.axhline(m - sd, color = 'y', linestyle = 'dashed')
-    pp.axhline(m - 2*sd, color = 'y', linestyle = 'dashed')
-    pp.axhline(m - 3*sd, color = 'y', linestyle = 'dashed')
+    pp.axhline(m, color = 'k', linestyle = 'b0')
+    pp.axhline(m + sd, color = 'y', linestyle = 'b0')
+    pp.axhline(m + 2*sd, color = 'y', linestyle = 'b0')
+    pp.axhline(m + 3*sd, color = 'y', linestyle = 'b0')
+    pp.axhline(m - sd, color = 'y', linestyle = 'b0')
+    pp.axhline(m - 2*sd, color = 'y', linestyle = 'b0')
+    pp.axhline(m - 3*sd, color = 'y', linestyle = 'b0')
  
     pp.xlabel('Date')
     pp.ylabel('Value')
@@ -246,7 +246,7 @@ for i in range(len(filesdata)):
             break
  
     if (foundNine):
-        fh2.write('Western Electric Rule4 is satisfied on this chart!')
+        fh2.write('Western Electric Rule4 is satisfied on this chart!')Creates file (stored on local computer) which states each files and their given rules
         fh2.write('\n')
         # print("Western Electric Rule4 is satisfied on this chart!")
     else:
